@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from voz import falar
+from voz import falar_async
 
 # Carrega variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -15,12 +15,12 @@ def tocar_musica(sp, query):
     results = sp.search(query, limit=5, type="track")
 
     if not results['tracks']['items']:
-        falar('Música não encontrada.')
+        falar_async('Música não encontrada.')
         return
 
     devices = sp.devices()
     if not devices['devices']:
-        falar('Nenhum dispositivo ativo. Abra o Spotify.')
+        falar_async('Nenhum dispositivo ativo. Abra o Spotify.')
         return
 
     track = results['tracks']['items'][0]
@@ -28,7 +28,7 @@ def tocar_musica(sp, query):
     artista = track['artists'][0]['name']
     uri = track['uri']
 
-    falar(f'Tocando {nome} por {artista}')
+    falar_async(f'Tocando {nome} por {artista}')
     sp.start_playback(uris=[uri])
 
 def pausar(sp):
@@ -39,3 +39,7 @@ def continuar(sp):
 
 def mudar_volume(sp, volume):
     sp.volume(volume)
+
+def ajuda():
+    print('Você pode dizer: spotify tocar, spotify pause, spotify continue, ou mude volume para 50.')
+

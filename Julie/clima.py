@@ -1,7 +1,7 @@
 import requests
 import os
 from datetime import datetime, timedelta
-from voz import falar
+from voz import falar_async
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -22,7 +22,7 @@ def obter_previsao(dia='hoje'):
         resposta = requests.get(URL, params=params).json()
 
         if resposta.get("cod") != "200":
-            falar("Não consegui obter a previsão do tempo.")
+            falar_async("Não consegui obter a previsão do tempo.")
             return
 
         agora = datetime.now()
@@ -31,14 +31,14 @@ def obter_previsao(dia='hoje'):
 
         previsoes = [item for item in resposta["list"] if item["dt_txt"].startswith(data_alvo)]
         if not previsoes:
-            falar("Sem dados de previsão disponíveis.")
+            falar_async("Sem dados de previsão disponíveis.")
             return
 
         temp = previsoes[0]['main']['temp']
         clima = previsoes[0]['weather'][0]['description']
 
-        falar(f"A previsão para {dia} em {CIDADE} é de {clima}, com temperatura de {temp:.0f} graus Celsius.")
+        falar_async(f"A previsão para {dia} em {CIDADE} é de {clima}, com temperatura de {temp:.0f} graus Celsius.")
 
     except Exception as e:
         print("Erro ao obter previsão:", e)
-        falar("Houve um erro ao buscar a previsão do tempo.")
+        falar_async("Houve um erro ao buscar a previsão do tempo.")

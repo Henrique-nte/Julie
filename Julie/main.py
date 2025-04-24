@@ -1,7 +1,7 @@
 import os
 from clima import obter_previsao
-from voz import falar, ouvir, saudacao
-from spotify import tocar_musica, pausar, continuar, mudar_volume, spotify
+from voz import falar, falar_async, ouvir, saudacao
+from spotify import tocar_musica, pausar, continuar, mudar_volume, ajuda, spotify
 
 def main():
     saudacao()
@@ -12,11 +12,17 @@ def main():
         if comando == 'no sound':
             continue
 
+        if 'até mais julie' in comando:
+            falar('Até logo, Shelby!')
+            print('Julie: Até logo, Shelby!')
+            break  # Isso sai do loop e termina o programa
+
         if 'spotify tocar' in comando:
             query = comando.replace('spotify tocar', '').strip()
             tocar_musica(spotify, query)
 
         elif 'spotify pause' in comando:
+            falar_async('Song pausado')
             pausar(spotify)
 
         elif 'spotify continue' in comando:
@@ -27,10 +33,12 @@ def main():
                 volume = int(comando.replace('mude volume para', '').strip())
                 mudar_volume(spotify, volume)
             except:
-                falar('Volume inválido.')
+                falar_async('Volume inválido.')
+                print('Julie: Volume inválido.')
 
         elif 'ajuda' in comando:
-            falar('Você pode dizer: spotify tocar, spotify pause, spotify continue, ou mude volume para 50.')
+            falar_async('Claro Shelby.')
+            ajuda()
         elif 'previsão do tempo' in comando:
             if 'amanhã' in comando:
                 obter_previsao(dia='amanha')

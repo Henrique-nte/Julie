@@ -1,5 +1,8 @@
 1 - Funcionalidades 
  1.1 - Previsão do tempo
- 1.2 - Ativação por Reconhecimento de voz
- 1.3 - Qualidade da voz da Julie
+ 1.2 - Modo Duplo: Um só por voz, outro só por comando
+ 1.3 - Mudar volume com erros
+
 2 - Qualidade
+ 1.1 - Qualidade da voz da Julie
+ 1.2 - Ativação por Reconhecimento de voz
