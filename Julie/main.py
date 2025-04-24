@@ -1,4 +1,5 @@
 import os
+from clima import obter_previsao
 from voz import falar, ouvir, saudacao
 from spotify import tocar_musica, pausar, continuar, mudar_volume, spotify
 
@@ -30,6 +31,12 @@ def main():
 
         elif 'ajuda' in comando:
             falar('Você pode dizer: spotify tocar, spotify pause, spotify continue, ou mude volume para 50.')
+        elif 'previsão do tempo' in comando:
+            if 'amanhã' in comando:
+                obter_previsao(dia='amanha')
+            else:
+                obter_previsao(dia='hoje')
+
 
 if __name__ == "__main__":
     main()
