@@ -2,3 +2,4 @@
  1.1 - Previsão do tempo
  1.2 - Ativação por Reconhecimento de voz
  1.3 - Qualidade da voz da Julie
+2 - Qualidade
