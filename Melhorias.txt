@@ -1,0 +1,4 @@
+1 - Funcionalidades 
+ 1.1 - Previsão do tempo
+ 1.2 - Ativação por Reconhecimento de voz
+ 1.3 - 
