@@ -1,12 +1,19 @@
 import pyttsx3
 import speech_recognition as sr
 from datetime import datetime
+import threading
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 engine.setProperty('rate', 170)
 
+def falar_async(texto):
+    def falar_thread():
+        engine.say(texto)
+        engine.runAndWait()
+    threading.Thread(target=falar_thread).start()
+    
 def falar(texto):
     engine.say(texto)
     engine.runAndWait()
