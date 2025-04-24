@@ -23,6 +23,7 @@ def obter_previsao(dia='hoje'):
 
         if resposta.get("cod") != "200":
             falar_async("Não consegui obter a previsão do tempo.")
+            print("Não consegui obter a previsão do tempo.")
             return
 
         agora = datetime.now()
@@ -32,12 +33,14 @@ def obter_previsao(dia='hoje'):
         previsoes = [item for item in resposta["list"] if item["dt_txt"].startswith(data_alvo)]
         if not previsoes:
             falar_async("Sem dados de previsão disponíveis.")
+            print("Sem dados de previsão disponíveis.")
             return
 
         temp = previsoes[0]['main']['temp']
         clima = previsoes[0]['weather'][0]['description']
 
         falar_async(f"A previsão para {dia} em {CIDADE} é de {clima}, com temperatura de {temp:.0f} graus Celsius.")
+        print(f"A previsão para {dia} em {CIDADE} é de {clima}, com temperatura de {temp:.0f} graus Celsius.")
 
     except Exception as e:
         print("Erro ao obter previsão:", e)

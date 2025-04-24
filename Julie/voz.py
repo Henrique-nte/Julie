@@ -8,16 +8,35 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 engine.setProperty('rate', 170)
 
-def falar_async(texto):
-    def falar_thread():
+# Lock para evitar conflito de múltiplas threads usando o engine ao mesmo tempo
+lock_engine = threading.Lock()
+
+def falar(texto):
+    with lock_engine:
         engine.say(texto)
         engine.runAndWait()
-    threading.Thread(target=falar_thread).start()
-    
-def falar(texto):
-    engine.say(texto)
-    engine.runAndWait()
 
+def falar_async(texto):
+    def falar_thread():
+        with lock_engine:
+            engine.say(texto)
+            engine.runAndWait()
+    threading.Thread(target=falar_thread).start()
+
+# Função utilitária para verificar dispositivos Spotify ativos
+def dispositivo_ativo(sp):
+    devices = sp.devices()
+    if not devices['devices']:
+        falar_async('Nenhum dispositivo do Spotify está ativo. Abra o app e reproduza algo primeiro.')
+        return None
+    return devices['devices'][0]['id']  # retorna o primeiro dispositivo ativo
+
+# Função para tocar música com verificação de dispositivo
+def tocar_com_verificacao(sp, uri):
+    device_id = dispositivo_ativo(sp)
+    if device_id:
+        sp.start_playback(device_id=device_id, uris=[uri])
+    
 def saudacao():
     hora = datetime.now().hour
     if hora < 12:
