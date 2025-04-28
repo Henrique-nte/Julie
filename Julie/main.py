@@ -5,7 +5,7 @@ from spotify import tocar_musica, pausar, continuar, mudar_volume, ajuda, spotif
 
 
 def main():
-    saudacao()
+    #saudacao()
 
     while True:
         comando = ouvir().lower()

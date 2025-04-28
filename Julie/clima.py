@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 API_KEY = os.getenv("OPENWEATHER_KEY")
-CIDADE = "Jaraguá Do Sul"
+CIDADE = "Jaraguá do Sul"
 
 URL = "https://api.openweathermap.org/data/2.5/forecast"
 
@@ -20,6 +20,8 @@ def obter_previsao(dia='hoje'):
             'units': 'metric'
         }
         resposta = requests.get(URL, params=params).json()
+        
+
 
         if resposta.get("cod") != "200":
             falar_async("Não consegui obter a previsão do tempo.")
