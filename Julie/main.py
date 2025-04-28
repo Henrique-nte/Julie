@@ -5,7 +5,7 @@ from spotify import tocar_musica, pausar, continuar, mudar_volume, ajuda, spotif
 
 
 def main():
-    #saudacao()
+    saudacao()
 
     while True:
         comando = ouvir().lower()
@@ -13,20 +13,20 @@ def main():
         if comando == 'no sound':
             continue
 
-        if 'até mais julie' in comando:
+        if 'até mais julie' in comando or 'até mais ju' in comando or 'até mais júlia' in comando:
             falar('Até logo Shelby!')
             print('Julie: Até logo Shelby!')
-            break  # Isso sai do loop e termina o programa
+            break  # Sai do loop
 
-        if 'spotify tocar' in comando:
+        if 'julie tocar' in comando or 'júlia tocar' in comando:
             query = comando.replace('spotify tocar', '').strip()
             tocar_musica(spotify, query)
 
-        elif 'spotify pause' in comando:
+        elif 'julie pause' in comando or 'júlia pause' in comando:
             print('Song pausado...')
             pausar(spotify)
 
-        elif 'spotify continue' in comando:
+        elif 'julie continue' in comando or 'julia continue' in comando:
             print('Song continuando...')
             continuar(spotify)
 

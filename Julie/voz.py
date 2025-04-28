@@ -46,7 +46,7 @@ def saudacao():
     else:
         msg = 'Boa noite Shelby!'
     data = datetime.now().strftime('%d/%m/%Y')
-    falar(f"{msg} Hoje é {data}.")
+    falar(f"{msg}") #Hoje é {data}.")
 
 def ouvir(modo_teste=False):
     if modo_teste:
