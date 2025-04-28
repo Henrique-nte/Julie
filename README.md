@@ -46,10 +46,10 @@ Organizar pesquisas, ideias e anotações relacionadas ao desenvolvimento de Jul
 - **requests**: Consulta a APIs externas.  
 - **datetime**: Gerenciamento de datas e horários.  
 
-### **APIs Recomendadas**
+### **APIs Utilizacas**
 - **OpenWeatherMap**: Previsão do tempo.  
-- **Spotify API** ou **YouTube API**: Tocar músicas.  
-- **OpenAI API**: Respostas inteligentes e personalizadas.
+- **Spotify API**: Tocar músicas.  
+- **Gemini API**: Respostas inteligentes e personalizadas.
 
 ---
 
